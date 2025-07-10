@@ -1,12 +1,13 @@
 const express = require("express");
-const path = require("path");
-const { testController } = require("../Controllers/testController");
+const users = require("../Controllers/getUser")
+const loginController = require("../Controllers/loginController");
+const authToken  = require("../middlewares/authMiddleware");
 const router = express.Router();
 
-router.get("/users/:id", (req,res,next) => {
-    res.send(testController())
+
+router.get("/dashboard", authToken, (req,res) => {
+    res.render("user/dashboard")
 })
 
-router.get("/users", testController)
 
 module.exports = router;
