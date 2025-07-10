@@ -3,7 +3,7 @@ const db = require("../models")
 const jwt = require("jsonwebtoken")
 const User = db.User;
 
-exports.login = async (req,res) => {
+exports.login = async (req: any,res: any) => {
     const { username, password } = req.body;
     const user = await User.findOne({
         where: {
@@ -12,12 +12,13 @@ exports.login = async (req,res) => {
         }
     })
     if(user == null) return res.status(403).json({message: "Kullanıcı ismi veya şifre yanlış"})
-    payload = {
+    const payload: {userId: number; username: string; role: string}= {
         userId: user.id,
         username: user.username,
         role: user.role,
     }
-    const token = jwt.sign(payload, process.env.SECRET_KEY, {expiresIn: "1h"})
+    
+    const token = jwt.sign(payload, process.env.SECRET_KEY as string, {expiresIn: "1h"})
     res.cookie("token", token, {
         httpOnly: true,
         secure: false,   // Üretimde 'true' olmalı

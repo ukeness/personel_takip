@@ -1,5 +1,5 @@
 require('dotenv').config();
-const express = require("express");
+import express from 'express';
 const cookieParser = require("cookie-parser");
 
 const loginRoutes = require("./routes/login")

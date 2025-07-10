@@ -1,11 +1,11 @@
-const express = require("express");
+import express from "express"
 const users = require("../Controllers/getUser")
 const loginController = require("../Controllers/loginController");
-const authToken  = require("../middlewares/authMiddleware");
+import authToken from "../middlewares/authMiddleware";
 const router = express.Router();
 
 
-router.get("/dashboard", authToken, (req,res) => {
+router.get("/dashboard", authToken, (req: any,res: any) => {
     res.render("user/dashboard")
 })
 

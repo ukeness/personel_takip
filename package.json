@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch src --ext ts --exec ts-node ./src/app.ts"
+    "dev": "nodemon --watch root --ext ts --exec ts-node ./root/app.ts"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.11",
     "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.0.13",
     "nodemon": "^3.1.10",
     "sequelize-cli": "^6.6.3",
