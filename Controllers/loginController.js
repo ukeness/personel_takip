@@ -26,6 +26,3 @@ exports.login = async (req,res) => {
     });
     res.json({token})
 }
-exports.logout = async (req,res) => {
-    res.
-}

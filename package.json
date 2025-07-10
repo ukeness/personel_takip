@@ -10,8 +10,7 @@
   "author": "",
   "license": "ISC",
   "type": "commonjs",
-  "dependencies": {
-    "@tailwindcss/cli": "^4.1.11",
+  "dependencies": { 
     "body-parser": "^2.2.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
@@ -21,12 +20,13 @@
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.16.3",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.37.7",
-    "sequelize-cli": "^6.6.3",
-    "tailwindcss": "^4.1.11"
+    "sequelize": "^6.37.7"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "tailwindcss": "^4.1.11",
+    "@tailwindcss/cli": "^4.1.11",
+    "sequelize-cli": "^6.6.3"
   },
   "repository": {
     "type": "git",
