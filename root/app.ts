@@ -1,5 +1,6 @@
 require('dotenv').config();
 import express from 'express';
+import sequelize from "../root/config/config"
 const cookieParser = require("cookie-parser");
 
 const loginRoutes = require("./routes/login")
@@ -7,6 +8,12 @@ const userRoutes = require("./routes/user")
 
 const app = express()
 const port = 3000;
+
+sequelize.sync().then(() => {
+    console.log("Sequelize synced")
+}).catch((err) => {
+    console.log("Database cannot synced: ", err);
+})
 
 exports.session = ({
     secret: "secretkey",

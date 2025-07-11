@@ -1,7 +1,6 @@
 require("dotenv").config();
-const db = require("../models")
+import { User } from '../models/User.model';
 const jwt = require("jsonwebtoken")
-const User = db.User;
 
 exports.login = async (req: any,res: any) => {
     const { username, password } = req.body;
@@ -17,7 +16,7 @@ exports.login = async (req: any,res: any) => {
         username: user.username,
         role: user.role,
     }
-    
+
     const token = jwt.sign(payload, process.env.SECRET_KEY as string, {expiresIn: "1h"})
     res.cookie("token", token, {
         httpOnly: true,
