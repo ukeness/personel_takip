@@ -1,13 +1,13 @@
-const express = require("express");
-const users = require("../Controllers/getUser")
-const loginController = require("../Controllers/loginController")
+import express from "express"
+import { login, logout } from "../Controllers/loginController"
 const router = express.Router();
 
-
-router.get("/", (req: any,res: any) => {
+router.get("/login", (req: any,res: any) => {
     res.render("login")
 })
-router.post("/", loginController.login);
+router.post("/login", login);
+
+router.get("/logout", logout)
 
 
 module.exports = router;

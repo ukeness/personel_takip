@@ -1,12 +1,15 @@
 import express from "express"
 import { authToken } from "../middlewares/authTokenMiddleware";
-import { isUser } from "../middlewares/authUserMiddleware";
+import { isAdmin } from "../middlewares/authUserMiddleware";
 const router = express.Router();
 
-router.use(isUser);
+router.use(isAdmin)
 
 router.get("/dashboard", authToken, (req: any,res: any) => {
-    res.render("user/dashboard")
+    res.render("admin/dashboard")
+})
+router.get("/admin", authToken, (req,res) => {
+    res.render("admin/admin");
 })
 
 

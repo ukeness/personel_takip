@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 
 const loginRoutes = require("./routes/login")
 const userRoutes = require("./routes/user")
+const adminRoutes = require("./routes/admin")
 
 const app = express()
 const port = 3000;
@@ -14,13 +15,6 @@ sequelize.sync().then(() => {
 }).catch((err) => {
     console.log("Database cannot synced: ", err);
 })
-
-exports.session = ({
-    secret: "secretkey",
-    resave: false,
-    saveUninitialized: false,
-})
-
 app.set("view engine", "ejs")
 
 app.use(cookieParser());
@@ -28,8 +22,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname +"/public"))
 
-app.use("/login", loginRoutes)
+app.use("/", loginRoutes)
 app.use("/", userRoutes)
+app.use("/admin", adminRoutes)
 
 
 app.listen(port, () => {

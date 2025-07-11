@@ -1,8 +1,8 @@
 require("dotenv").config();
+import {Request, Response} from "express"
 import { User } from '../models/User.model';
 const jwt = require("jsonwebtoken")
-
-exports.login = async (req: any,res: any) => {
+export const login = async (req: any,res: any) => {
     const { username, password } = req.body;
     const user = await User.findOne({
         where: {
@@ -24,5 +24,15 @@ exports.login = async (req: any,res: any) => {
         sameSite: "strict",
         maxAge: 3600000  // 1 saat
     });
-    res.json({token})
+
+    return res.redirect("/dashboard")
+}
+
+export const logout = (req: Request, res: Response) => {
+    res.clearCookie("token", {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict',
+    })
+    res.json({message: "Çıkış Yapıldı"})
 }
