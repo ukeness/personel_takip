@@ -10,4 +10,4 @@ router.get("/dashboard", authToken, (req: any,res: any) => {
 })
 
 
-module.exports = router;
+export default router;

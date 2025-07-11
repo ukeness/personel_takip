@@ -13,4 +13,4 @@ router.get("/admin", authToken, (req,res) => {
 })
 
 
-module.exports = router;
+export default router;
