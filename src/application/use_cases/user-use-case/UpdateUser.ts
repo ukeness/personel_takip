@@ -1,7 +1,6 @@
 import { UserRoles } from "../../../domain/entities/UserRoles";
 import { Users } from "../../../domain/entities/Users";
-import { UserModel } from "../../../infrastructure/database/models/UserModel";
-import { IUserRepository } from "../../repositories/IUserRepository";
+import { IMainRepository } from "../../repositories/IMainRepository";
 
 interface UpdateUserRequest {
     id: string,
@@ -18,7 +17,7 @@ interface UpdateUserResponse {
 }
 
 export class UpdateUser{
-    constructor(private repository: IUserRepository<Users>) {}
+    constructor(private repository: IMainRepository<Users>) {}
 
     async execute(req: UpdateUserRequest):Promise<UpdateUserResponse> {
 
@@ -29,7 +28,7 @@ export class UpdateUser{
         if(req.user_role) user.updateUserRole = req.user_role;
         if(req.is_active) user.updateIsActive = req.is_active;
         if(req.last_login) user.updateLastLogin = req.last_login;
-        this.repository.update(user.id, user)
+        await this.repository.update(user.id, user)
         return {
             username: user.username,
             password: user.password,

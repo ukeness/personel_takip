@@ -1,6 +1,6 @@
 import { Employees } from "../../../domain/entities/Employees";
 import { EmployeePositions } from "../../../domain/entities/EmployeePositions";
-import { IEmployeeRepository } from "../../repositories/IEmployeeRepository";
+import { IMainRepository } from "../../repositories/IMainRepository";
 
 interface GetEmployeeRequest {
     id: string,
@@ -20,13 +20,12 @@ interface GetEmployeeResponse {
     birth_date: Date,
     gender: string,
     national_id: string,
-    companies_id: string,
     created_at: Date,
     updated_at: Date,    
 }
 
 export class GetEmployee {
-    constructor(private repository: IEmployeeRepository<Employees>) {}
+    constructor(private repository: IMainRepository<Employees>) {}
 
     async execute(req: GetEmployeeRequest): Promise<GetEmployeeResponse>{
         const employee = await this.repository.findById(req.id);
@@ -45,7 +44,6 @@ export class GetEmployee {
             birth_date: employee.birth_date,
             gender: employee.gender,
             national_id: employee.national_id,
-            companies_id: employee.companies_id,
             created_at: employee.created_at,
             updated_at: employee.updated_at,
         }

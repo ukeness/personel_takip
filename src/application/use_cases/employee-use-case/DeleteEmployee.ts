@@ -1,6 +1,6 @@
 import { Employees } from "../../../domain/entities/Employees";
 import { Users } from "../../../domain/entities/Users";
-import { IEmployeeRepository } from "../../repositories/IEmployeeRepository";
+import { IMainRepository } from "../../repositories/IMainRepository";
 
 interface DeleteEmployeeRequest {
     id: string,
@@ -11,7 +11,7 @@ interface DeleteEmployeeResponse {
 }
 
 export class DeleteEmployee{
-    constructor(private repository: IEmployeeRepository<Employees>) {}
+    constructor(private repository: IMainRepository<Employees>) {}
 
     async execute(req: DeleteEmployeeRequest): Promise<DeleteEmployeeResponse> {
         const response = this.repository.delete(req.id);

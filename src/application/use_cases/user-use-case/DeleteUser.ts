@@ -1,5 +1,5 @@
 import { Users } from "../../../domain/entities/Users";
-import { IUserRepository } from "../../repositories/IUserRepository";
+import { IMainRepository } from "../../repositories/IMainRepository";
 
 interface DeleteUserRequest {
     id: string,
@@ -11,7 +11,7 @@ interface DeleteUserResponse {
 }
 
 export class DeleteUser{
-    constructor(private repository: IUserRepository<Users>) {}
+    constructor(private repository: IMainRepository<Users>) {}
 
     async execute(request: DeleteUserRequest): Promise<DeleteUserResponse>{
         const response = await this.repository.delete(request.id)

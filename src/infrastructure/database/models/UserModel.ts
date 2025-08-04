@@ -1,4 +1,3 @@
-import { NumberDataType } from "sequelize";
 import { DataType, Table, Model, Column, PrimaryKey, AllowNull, ForeignKey, BelongsTo } from "sequelize-typescript";
 import { EmployeeModel } from "./EmployeeModel";
 import { UserRoleModel } from "./UserRoleModel";
@@ -7,8 +6,8 @@ interface UserAttributes {
     id: string,
     username: string,
     password: string,
-    user_role_id: any,
-    employee_id: any,
+    user_role_id: string,
+    employee_id: string,
     last_login: Date,
     is_active: boolean,
     created_at: Date,

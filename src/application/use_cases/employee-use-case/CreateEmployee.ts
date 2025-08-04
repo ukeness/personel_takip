@@ -1,6 +1,6 @@
 import { Employees } from "../../../domain/entities/Employees";
 import { EmployeePositions } from "../../../domain/entities/EmployeePositions";
-import { IEmployeeRepository } from "../../repositories/IEmployeeRepository";
+import { IMainRepository } from "../../repositories/IMainRepository";
 
 interface CreateEmployeeRequest {
     name: string,
@@ -26,7 +26,7 @@ interface CreateEmployeeResponse {
 }
 
 export class CreateEmployee{
-    constructor(private repository: IEmployeeRepository<Employees>) {}
+    constructor(private repository: IMainRepository<Employees>) {}
 
     async execute(req: CreateEmployeeRequest): Promise<CreateEmployeeResponse> {
         const data = await Employees.createEmployee(
@@ -42,7 +42,6 @@ export class CreateEmployee{
             req.birth_date,
             req.gender,
             req.national_id,
-            req.companies_id,
         )
         const response = await this.repository.create(data);
         if(!response) throw new Error("The Employee creation process could not happened");

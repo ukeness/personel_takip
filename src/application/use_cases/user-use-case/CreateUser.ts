@@ -1,8 +1,6 @@
-import { col } from "sequelize";
 import { Users } from "../../../domain/entities/Users";
-import { IUserRepository } from "../../repositories/IUserRepository";
+import { IMainRepository } from "../../repositories/IMainRepository";
 import { UserRoles } from "../../../domain/entities/UserRoles";
-import { EmployeeModel } from "../../../infrastructure/database/models/EmployeeModel";
 import { Employees } from "../../../domain/entities/Employees";
 
 interface CreateUserRequest {
@@ -18,7 +16,7 @@ interface CreateUserResponse {
 }
 
 export class CreateUser {
-    constructor(private repository: IUserRepository<Users>) {}
+    constructor(private repository: IMainRepository<Users>) {}
 
     async execute(req: CreateUserRequest): Promise<CreateUserResponse> {
 

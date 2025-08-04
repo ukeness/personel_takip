@@ -15,8 +15,8 @@ export class Employees{
         private _birth_date: Date,
         private _gender: string,
         private _national_id: string,
-        private _created_at: Date = new Date(),
-        private _updated_at: Date = new Date(),
+        private _created_at: Date,
+        private _updated_at: Date,
 
     ){}
 
@@ -120,6 +120,43 @@ export class Employees{
         }
     }
 
+    static async catchData(data: {
+        id: string,
+        name: string,
+        surname: string,
+        country: string,
+        city: string,
+        district: string,
+        address: string,
+        email: string,
+        phone: string,
+        position: EmployeePositions,
+        birth_date: Date,
+        gender: string,
+        national_id: string,
+        created_at: Date,
+        updated_at: Date,
+    }
+    ): Promise<Employees>{
+        return new Employees(
+            data.id,
+            data.name,
+            data.surname,
+            data.country,
+            data.city,
+            data.district,
+            data.address,
+            data.email,
+            data.phone,
+            data.position,
+            data.birth_date,
+            data.gender,
+            data.national_id,
+            data.created_at,
+            data.updated_at,
+        )
+    }
+
     static async createEmployee(
         name: string,
         surname: string,
@@ -133,10 +170,11 @@ export class Employees{
         birth_date: Date,
         gender: string,
         national_id: string,
-        companies_id: string,
     ): Promise<Employees>{
         const id = this.generateId()
-        return new Employees(id,name,surname,country,city,district,address,email,phone,position,birth_date,gender,national_id)
+        const created_at: Date = new Date();
+        const updated_at: Date = new Date();
+        return new Employees(id,name,surname,country,city,district,address,email,phone,position,birth_date,gender,national_id,created_at,updated_at)
     }
 
     private static generateId(){

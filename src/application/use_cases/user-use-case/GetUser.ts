@@ -1,7 +1,7 @@
 import { Users } from "../../../domain/entities/Users";
 import { Employees } from "../../../domain/entities/Employees";
 import { UserRoles } from "../../../domain/entities/UserRoles";
-import { IUserRepository } from "../../repositories/IUserRepository";
+import { IMainRepository } from "../../repositories/IMainRepository";
 
 interface GetUserRequest {
     id: string,
@@ -19,7 +19,7 @@ interface GetUserResponse {
 }
 
 export class GetUser{
-    constructor(private repository: IUserRepository<Users>){}
+    constructor(private repository: IMainRepository<Users>){}
 
     async execute(request: GetUserRequest): Promise<GetUserResponse> {
         const response = await this.repository.findById(request.id);

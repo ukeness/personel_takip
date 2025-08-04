@@ -41,6 +41,31 @@ export class Users {
         if(req) this._last_login = req;
     }
 
+    static catchData(data: {
+        id: string,
+        username: string,
+        password: string,
+        employee: Employees | undefined,
+        user_role: UserRoles,
+        is_active: boolean,
+        last_login: Date,
+        created_at: Date,
+        updated_at: Date,
+    }
+    ): Users{
+        return new Users(
+            data.id,
+            data.username,
+            data.password,
+            data.employee,
+            data.user_role,
+            data.is_active,
+            data.last_login,
+            data.created_at,
+            data.updated_at,
+        )
+    }
+
     static async createUser(
         username: string,
         password: string,

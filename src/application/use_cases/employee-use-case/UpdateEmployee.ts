@@ -1,6 +1,6 @@
 import { Employees } from "../../../domain/entities/Employees";
 import { EmployeePositions } from "../../../domain/entities/EmployeePositions";
-import { IEmployeeRepository } from "../../repositories/IEmployeeRepository";
+import { IMainRepository } from "../../repositories/IMainRepository";
 
 interface UpdateEmployeeRequest{
     id: string,
@@ -15,11 +15,15 @@ interface UpdateEmployeeRequest{
     position?: EmployeePositions,
     gender?: string,   
 }
-
+interface UpdateEmployeeResponse{
+    success: boolean,
+    response: Employees,
+    message: string,
+}
 export class UpdateEmployee {
-    constructor(private repository: IEmployeeRepository<Employees>) {}
+    constructor(private repository: IMainRepository<Employees>) {}
 
-    async execute(req: UpdateEmployeeRequest): Promise<void>{
+    async execute(req: UpdateEmployeeRequest): Promise<UpdateEmployeeResponse>{
         
         const employee = await this.repository.findById(req.id);
         if(!employee) throw new Error("Employee to be updated was not found")
@@ -35,6 +39,12 @@ export class UpdateEmployee {
         if(req.gender) employee.updateGender = req.gender;
 
         await this.repository.update(employee.id, employee)
+
+        return{
+            success: true,
+            response: employee,
+            message: "Kullanıcı başarıyla Güncellendi",
+        }
 
     }
 }
