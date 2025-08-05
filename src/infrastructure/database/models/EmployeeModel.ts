@@ -1,5 +1,6 @@
-import { DataType, Table, Model, Column, PrimaryKey, AllowNull, ForeignKey } from "sequelize-typescript";
+import { DataType, Table, Model, Column, PrimaryKey, AllowNull, ForeignKey, BelongsTo } from "sequelize-typescript";
 import { EmployeePositions } from "../../../domain/entities/EmployeePositions";
+import { EmployeePositionModel } from "./EmployeePositionsModel";
 
 interface EmployeeAttributes {
     id: string,
@@ -49,8 +50,11 @@ export class EmployeeModel extends Model implements EmployeeAttributes{
     @AllowNull(true)
     @Column({type: DataType.STRING}) phone!: string
 
+    @ForeignKey(() => EmployeePositionModel)
     @AllowNull(false)
-    @Column({type: DataType.STRING}) position!: EmployeePositions
+    @Column({type: DataType.STRING}) position_id!: string
+    @BelongsTo(() => EmployeePositionModel)
+    position!: EmployeePositionModel
 
     @AllowNull(true)
     @Column({type: DataType.STRING}) birth_date!: Date

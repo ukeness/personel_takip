@@ -3,6 +3,7 @@ import { IMainRepository } from "../../../../application/repositories/IMainRepos
 import { EmployeeModel } from "../../models/EmployeeModel";
 import { Model } from "sequelize-typescript";
 import { UserModel } from "../../models/UserModel";
+import { EmployeePositions } from "../../../../domain/entities/EmployeePositions";
 
 
 
@@ -20,7 +21,7 @@ export class EmployeeRepository implements IMainRepository<Employees>{
                 address: response.address,
                 email: response.email,
                 phone: response.phone,
-                position: response.position,
+                position: EmployeePositions.catchData(response.position),
                 birth_date: response.birth_date,
                 gender: response.gender,
                 national_id: response.national_id,

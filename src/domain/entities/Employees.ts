@@ -120,7 +120,7 @@ export class Employees{
         }
     }
 
-    static async catchData(data: {
+    static catchData(data: {
         id: string,
         name: string,
         surname: string,
@@ -137,7 +137,7 @@ export class Employees{
         created_at: Date,
         updated_at: Date,
     }
-    ): Promise<Employees>{
+    ): Employees{
         return new Employees(
             data.id,
             data.name,
