@@ -1,6 +1,7 @@
-import { DataType, Table, Model, Column, PrimaryKey, AllowNull, ForeignKey, BelongsTo } from "sequelize-typescript";
-import { EmployeePositions } from "../../../domain/entities/EmployeePositions";
+import { DataType, Table, Model, Column, PrimaryKey, AllowNull, ForeignKey, BelongsTo, HasOne } from "sequelize-typescript";
+import { UserModel } from "./UsersModel";
 import { EmployeePositionModel } from "./EmployeePositionsModel";
+
 
 interface EmployeeAttributes {
     id: string,
@@ -12,7 +13,7 @@ interface EmployeeAttributes {
     address: string,
     email: string,
     phone: string,
-    position: any,
+    position: EmployeePositionModel,
     birth_date: Date,
     gender: string,
     national_id: string,
@@ -73,5 +74,8 @@ export class EmployeeModel extends Model implements EmployeeAttributes{
 
     @AllowNull(false)
     @Column({type: DataType.DATE}) updated_at!: Date
+
+    @HasOne(() => UserModel)
+    users!: UserModel
 
 }

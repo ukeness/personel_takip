@@ -1,4 +1,4 @@
-import { UserRoles } from "./UserRoles"; 
+import { ROLE } from "../enums/Roles";
 import { Employees } from "./Employees";
 export class Users {
     constructor(
@@ -6,7 +6,7 @@ export class Users {
         private _username: string,
         private _password: string,
         private _employee: Employees | undefined,
-        private _user_role: UserRoles,
+        private _user_role: ROLE,
         private _is_active: boolean,
         private _last_login: Date,
         private _created_at: Date,
@@ -16,7 +16,7 @@ export class Users {
     get id(): string { return this._id };
     get username(): string { return this._username };
     get password(): string { return this._password };
-    get user_role(): UserRoles | undefined { return this._user_role };
+    get user_role(): ROLE { return this._user_role };
     get employee(): Employees | undefined { return this._employee };
     get last_login(): Date | undefined { return this._last_login };
     get is_active(): boolean { return this._is_active };
@@ -31,7 +31,7 @@ export class Users {
         if(newPassword) this._password = newPassword;
         this._updated_at = new Date();
     }
-    set updateUserRole(newRole: UserRoles){
+    set updateUserRole(newRole: ROLE){
         if(newRole) this._user_role = newRole;
     }
     set updateIsActive(req: boolean){
@@ -46,7 +46,7 @@ export class Users {
         username: string,
         password: string,
         employee: Employees | undefined,
-        user_role: UserRoles,
+        user_role: ROLE,
         is_active: boolean,
         last_login: Date,
         created_at: Date,
@@ -69,7 +69,7 @@ export class Users {
     static async createUser(
         username: string,
         password: string,
-        user_role: UserRoles,
+        user_role: ROLE,
         employee?: Employees,
     ): Promise<Users>{
         const id: string = this.generateId();

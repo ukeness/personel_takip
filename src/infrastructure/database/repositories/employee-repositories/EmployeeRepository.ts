@@ -1,8 +1,6 @@
 import { Employees } from "../../../../domain/entities/Employees";
 import { IMainRepository } from "../../../../application/repositories/IMainRepository";
-import { EmployeeModel } from "../../models/EmployeeModel";
-import { Model } from "sequelize-typescript";
-import { UserModel } from "../../models/UserModel";
+import { EmployeeModel } from "../../models/EmployeesModel";
 import { EmployeePositions } from "../../../../domain/entities/EmployeePositions";
 
 

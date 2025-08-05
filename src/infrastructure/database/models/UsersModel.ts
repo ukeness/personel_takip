@@ -1,13 +1,12 @@
-import { DataType, Table, Model, Column, PrimaryKey, AllowNull, ForeignKey, BelongsTo, HasOne } from "sequelize-typescript";
-import { EmployeeModel } from "./EmployeeModel";
-import { UserRoleModel } from "./UserRoleModel";
-import { POSITION } from "../../../domain/enums/Positions";
 
+import { DataType, Table, Model, Column, PrimaryKey, AllowNull, ForeignKey, BelongsTo, HasOne } from "sequelize-typescript";
+import { EmployeeModel } from "./EmployeesModel";
+import { ROLE } from "../../../domain/enums/Roles";
 interface UserAttributes {
     id: string,
     username: string,
     password: string,
-    user_role_id: string,
+    user_role: ROLE,
     employee_id: string,
     last_login: Date,
     is_active: boolean,
@@ -28,15 +27,12 @@ export class UserModel extends Model implements UserAttributes{
     @AllowNull(false)
     @Column({type: DataType.STRING}) password!: string
 
-    @ForeignKey(() => UserRoleModel)
-    @AllowNull(false)
-    @Column({type: DataType.STRING}) user_role_id!: string
-    @BelongsTo(() => UserRoleModel)
-    user_role!: UserRoleModel
+    @AllowNull(true)
+    @Column({type: DataType.STRING}) user_role!: ROLE
 
     @ForeignKey(() => EmployeeModel)
-    @AllowNull(false)
-    @Column({type: DataType.STRING}) employee_id!: POSITION
+    @AllowNull(true)
+    @Column({type: DataType.STRING}) employee_id!: string
     @BelongsTo(() => EmployeeModel)
     employee!: EmployeeModel
 

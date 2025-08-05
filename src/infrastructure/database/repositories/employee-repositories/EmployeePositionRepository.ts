@@ -1,8 +1,6 @@
 import { EmployeePositions } from "../../../../domain/entities/EmployeePositions";
 import { IMainRepository } from "../../../../application/repositories/IMainRepository";
 import { EmployeePositionModel } from "../../models/EmployeePositionsModel";
-import { POSITION } from "../../../../domain/enums/Positions";
-import { ALL } from "dns";
 
 export class EmployeePositionsRepository implements Partial<IMainRepository<EmployeePositions>>{
 
@@ -57,7 +55,7 @@ export class EmployeePositionsRepository implements Partial<IMainRepository<Empl
             throw new Error(`Çalışan pozisyonu id ile bulunurken hata: ${error.message}`);
         }
     }
-    async findByName(position: POSITION):Promise<EmployeePositions>{
+    async findByName(position: string):Promise<EmployeePositions>{
         try{
             const response = await EmployeePositionModel.findOne({where: {position: position}});
             if(!response) throw new Error("Çalışan Pozisyonu bulunmadı");
