@@ -1,37 +1,27 @@
-import { UserModel } from "../../models/UserModel";
 import { IMainRepository } from "../../../../application/repositories/IMainRepository";
 import { Users } from "../../../../domain/entities/Users";
+import { UserModel } from "../../models/UsersModel";
 import { Employees } from "../../../../domain/entities/Employees";
-import { UserRoles } from "../../../../domain/entities/UserRoles";
-import { EmployeeModel } from "../../models/EmployeeModel";
-import { UserRoleModel } from "../../models/UserRoleModel";
-import { EmployeePositionModel } from "../../models/EmployeePositionModel";
+import { EmployeeModel } from "../../models/EmployeesModel";
+import { EmployeePositionModel } from "../../models/EmployeePositionsModel";
 import { EmployeePositions } from "../../../../domain/entities/EmployeePositions";
+import { PasswordHashService } from "../../../services/PasswordHashService";
 
 export class UserRepository implements IMainRepository<Users>{
-
+    
     async toDomain(response: UserModel): Promise<Users> {
-        if (!response.employee) {
-            throw new Error(`User with id ${response.id} is missing employee data.`);
-        }
-        if (!response.user_role) {
-            throw new Error(`User with id ${response.id} is missing user role data.`);
-        }
-        if (!response.employee.position) {
-            throw new Error(`Employee data for user id ${response.id} is missing position data.`);
-        }
-
-        const employeeDomainObject = Employees.catchData({
+        const passwordHashService = new PasswordHashService();
+        /*const employeeDomainObject = Employees.catchData({
             ...response.employee.get({ plain: true }),
             position: EmployeePositions.catchData(response.employee.position)
-        });
+        });*/
 
         return Users.catchData({
             id: response.id,
             username: response.username,
             password: response.password,
-            employee: employeeDomainObject,
-            user_role: UserRoles.catchData(response.user_role),
+            employee: undefined,
+            user_role: response.user_role,
             is_active: response.is_active,
             last_login: response.last_login,
             created_at: response.created_at,
@@ -41,21 +31,23 @@ export class UserRepository implements IMainRepository<Users>{
 
     async create(user: Users): Promise<Users>{
         try{
+            const passwordHashService = new PasswordHashService();
             const createdUser = await UserModel.create({
                 id: user.id,
                 username: user.username,
-                password: user.password,
-                user_role_id: user.user_role.id,
-                employee_id: user.employee.id,
+                password: passwordHashService.hashPassword(user.password),
+                user_role_id: user.user_role,
+                employee_id: user.employee?.id,
                 last_login: user.last_login,
                 is_active: user.is_active,
                 created_at: user.created_at,
                 updated_at: user.updated_at,
             });
-            const response = await this.findById(createdUser.id);
+            /*const response = await this.findById(createdUser.id);
             if (!response) {
                 throw new Error("Could not retrieve user after creation.");
-            }
+            }*/
+            const response = await this.toDomain(createdUser)
             return response;
         }catch(error: any){
             console.log("userRepository.create: ", error);
@@ -65,9 +57,19 @@ export class UserRepository implements IMainRepository<Users>{
 
     async update(user_id: string, data: Partial<Users>): Promise<boolean>{
         try {
-            const [affectedCount] =  await UserModel.update(data, {
-                where: { id: user_id }
+            const passwordHashService = new PasswordHashService();
+            const [affectedCount,affectedRows] =  await UserModel.update({
+                username: data.username,
+                password: data.password,
+                is_active: data.is_active,
+                last_login: data.last_login,
+                updated_at: data.updated_at,
+            }, {
+                where: { id: user_id },
+                returning: true,
+                logging: true,
             });
+            console.log(affectedRows);
             if(affectedCount > 0 ) return true;
             return false;
         }
@@ -84,7 +86,6 @@ export class UserRepository implements IMainRepository<Users>{
                         model: EmployeeModel,
                         include: [EmployeePositionModel]
                     },
-                    UserRoleModel
                 ]
             });
             if(!response) throw new Error("User not found")
@@ -94,7 +95,7 @@ export class UserRepository implements IMainRepository<Users>{
             throw new Error(`Error while find user by id: ${error.message}`);
         }
     }
-    async findByName(username: string): Promise<Users> {
+    async findByName(username: string): Promise<Users | null> {
         try{
             const response = await UserModel.findOne({
                 where: { username: username },
@@ -102,11 +103,10 @@ export class UserRepository implements IMainRepository<Users>{
                     {
                         model: EmployeeModel,
                         include: [EmployeePositionModel]
-                    },
-                    UserRoleModel
+                    },                    
                 ]
             });
-            if(!response) throw new Error("User not found")
+            if(!response) return null
             return this.toDomain(response);
         }catch(error: any){
             console.log("userRepository.findByName: ", error);
@@ -122,8 +122,7 @@ export class UserRepository implements IMainRepository<Users>{
                         where: { email: email },
                         required: true,
                         include: [EmployeePositionModel]
-                    },
-                    UserRoleModel
+                    }                   
                 ]
             });
             if(!response) throw new Error("User not found")
@@ -141,7 +140,7 @@ export class UserRepository implements IMainRepository<Users>{
                         model: EmployeeModel,
                         include: [EmployeePositionModel]
                     },
-                    UserRoleModel
+                    
                 ]
             })
             if(!response) throw new Error("cannot found anything");

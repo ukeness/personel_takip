@@ -4,13 +4,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch root --ext ts --exec ts-node ./root/app.ts"
+    "dev": "nodemon --watch src --ext ts --exec ts-node ./src/interfaces/Server.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "body-parser": "^2.2.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
@@ -21,20 +22,22 @@
     "pg": "^8.16.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.7",
-    "sequelize-typescript": "^2.1.6"
+    "sequelize-typescript": "^2.1.6",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.11",
+    "@types/bcrypt": "^6.0.0",
     "@types/cookie-parser": "^1.4.9",
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^24.1.0",
+    "@types/node": "^24.2.1",
     "@types/sequelize": "^6.12.0",
     "nodemon": "^3.1.10",
     "sequelize-cli": "^6.6.3",
     "tailwindcss": "^4.1.11",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   },
   "repository": {
     "type": "git",

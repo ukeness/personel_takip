@@ -1,9 +1,8 @@
 import { EmployeePositions } from "../../../domain/entities/EmployeePositions";
-import { POSITION } from "../../../domain/enums/Positions";
 import { IMainRepository } from "../../repositories/IMainRepository";
 
 interface CreateEmployeePositionRequest{
-    position: POSITION,
+    position: string,
     note?: string
 } 
 interface CreateEmployeePositionResponse{

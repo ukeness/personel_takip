@@ -1,8 +1,7 @@
-import { POSITION } from "../enums/Positions";
 export class EmployeePositions{
     constructor(
         private _id: string,
-        private _position: POSITION,
+        private _position: string,
         private _note: string | undefined,
         private _created_at: Date,
         private _updated_at: Date,
@@ -10,13 +9,13 @@ export class EmployeePositions{
     ){}
 
     get id(): string {return this._id }
-    get position(): POSITION {return this._position }
+    get position(): string {return this._position }
     get note(): string | undefined {return this._note }
     get created_at(): Date {return this._created_at }
     get updated_at(): Date {return this._updated_at }
 
 
-    set UpdatePosition(newPosition: POSITION){
+    set UpdatePosition(newPosition: string){
         this._position = newPosition
     }
     set updateNote(newNote: string){
@@ -25,7 +24,7 @@ export class EmployeePositions{
 
     static catchData(data: {
         id: string,
-        position: POSITION,
+        position: string,
         note: string,
         created_at: Date,
         updated_at: Date,
@@ -40,7 +39,7 @@ export class EmployeePositions{
     }
 
     static async createPosition(
-        position: POSITION,
+        position: string,
         note: string | undefined,
     ): Promise<EmployeePositions>{
         const id = this.generateId();

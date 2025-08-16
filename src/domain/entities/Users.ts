@@ -5,8 +5,8 @@ export class Users {
         private _id: string,
         private _username: string,
         private _password: string,
-        private _employee: Employees | undefined,
         private _user_role: ROLE,
+        private _employee: Employees | undefined,
         private _is_active: boolean,
         private _last_login: Date,
         private _created_at: Date,
@@ -33,6 +33,7 @@ export class Users {
     }
     set updateUserRole(newRole: ROLE){
         if(newRole) this._user_role = newRole;
+        this._updated_at = new Date();
     }
     set updateIsActive(req: boolean){
         if(req != null) this._is_active = req;
@@ -57,8 +58,8 @@ export class Users {
             data.id,
             data.username,
             data.password,
-            data.employee,
             data.user_role,
+            data.employee,
             data.is_active,
             data.last_login,
             data.created_at,
@@ -69,15 +70,15 @@ export class Users {
     static async createUser(
         username: string,
         password: string,
-        user_role: ROLE,
-        employee?: Employees,
     ): Promise<Users>{
         const id: string = this.generateId();
+        const employee = undefined;
+        const user_role = ROLE.USER
         const is_active: boolean = false;
         const last_login: Date = new Date();
         const created_at: Date = new Date();
         const updated_at: Date = new Date();
-        return new Users(id,username,password,employee,user_role,is_active,last_login,created_at,updated_at)
+        return new Users(id,username,password,user_role,employee,is_active,last_login,created_at,updated_at)
     }
     private static generateId(){
         return "user_" + Math.random().toString(36).substring(2,15) + Date.now().toString(16);

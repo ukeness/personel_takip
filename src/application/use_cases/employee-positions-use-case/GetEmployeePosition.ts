@@ -1,6 +1,5 @@
 
 import { EmployeePositions } from "../../../domain/entities/EmployeePositions";
-import { POSITION } from "../../../domain/enums/Positions";
 import { IMainRepository } from "../../repositories/IMainRepository";
 
 interface GetEmployeePositionRequest {
@@ -8,7 +7,7 @@ interface GetEmployeePositionRequest {
 }
 interface GetEmployeePositionResponse {
     success: boolean
-    position: POSITION,
+    position: string,
     note?: string,
 
 }

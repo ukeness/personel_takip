@@ -1,11 +1,10 @@
 import { DataType,Table,Model, Column, AllowNull, PrimaryKey, HasMany } from "sequelize-typescript";
 import { EmployeePositions } from "../../../domain/entities/EmployeePositions";
-import { POSITION } from "../../../domain/enums/Positions";
-import { EmployeeModel } from "./EmployeeModel";
+import { EmployeeModel } from "./EmployeesModel";
 
 interface EmployeePositionAttributes{
     id: string,
-    position: POSITION,
+    position: string,
     created_at: Date,
     updated_at: Date,
     note?: string,
@@ -19,7 +18,7 @@ export class EmployeePositionModel extends Model<EmployeePositions>{
     @Column({type: DataType.STRING}) id!: string
 
     @AllowNull(false)
-    @Column({type: DataType.STRING}) position!: POSITION
+    @Column({type: DataType.STRING}) position!: string
 
     @AllowNull(true)
     @Column({type: DataType.STRING}) note!: string

@@ -26,7 +26,7 @@ export class UpdateEmployee {
     async execute(req: UpdateEmployeeRequest): Promise<UpdateEmployeeResponse>{
         
         const employee = await this.repository.findById(req.id);
-        if(!employee) throw new Error("Employee to be updated was not found")
+        if(!employee) throw new Error("Güncellenecek çalışan bulunamadı")
         if(req.name) employee.updateName = req.name;
         if(req.surname) employee.updateSurname = req.surname;
         if(req.country) employee.updateCountry = req.country;

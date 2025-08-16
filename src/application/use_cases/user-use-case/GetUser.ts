@@ -1,7 +1,7 @@
 import { Users } from "../../../domain/entities/Users";
 import { Employees } from "../../../domain/entities/Employees";
-import { UserRoles } from "../../../domain/entities/UserRoles";
 import { IMainRepository } from "../../repositories/IMainRepository";
+import { ROLE } from "../../../domain/enums/Roles";
 
 interface GetUserRequest {
     id: string,
@@ -11,7 +11,7 @@ interface GetUserResponse {
     username: string,
     password: string,
     employee: Employees | undefined,
-    user_role: UserRoles | undefined,
+    user_role: ROLE,
     is_active: boolean,
     last_login: Date | undefined,
     created_at: Date,

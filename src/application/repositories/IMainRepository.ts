@@ -6,7 +6,7 @@ export interface IMainRepository<T> {
     update(id: string,data: Partial<T>): Promise<boolean>
     delete(id: string): Promise<boolean>
     findById(id: string): Promise<T>
-    findByName(name: string): Promise<T>
+    findByName(name: string): Promise<T | null>
     findByEmail(email: string): Promise<T>
     findAll(): Promise<T[]>
 
