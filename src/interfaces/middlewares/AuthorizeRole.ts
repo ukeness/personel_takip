@@ -12,9 +12,7 @@ export class AuthorizeRole{
     async isAdmin(req: Request,res: Response,next: NextFunction): Promise<void>{
         try{
             const token = this.cookieService.getCookie(req);
-            console.log("token: ",token)
             const verifiedToken = await this.jwtService.verifyToken(token);
-            console.log("verified Token: ", verifiedToken)
             if(verifiedToken.user_role === ROLE.ADMIN){
                 next();
             } 

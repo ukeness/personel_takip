@@ -1,0 +1,28 @@
+/* Sidebar */
+.sidebar{position:sticky;top:0;height:100vh;background:rgba(255,255,255,.02);backdrop-filter: blur(6px);border-right:1px solid var(--border);padding:22px}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.brand__logo{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--info),#22d3ee)}
+.brand__title{font-weight:800;letter-spacing:.3px}
+
+/* Toggle (hidden on desktop) */
+.menu-toggle{display:none}
+
+.nav{display:grid;gap:6px}
+.nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;border:1px solid transparent}
+.nav a:hover{background:rgba(255,255,255,.03);border-color:var(--border)}
+.nav a.is-active{background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.35)}
+
+/* Responsive (Sidebar) */
+@media (max-width: 860px){
+  .sidebar{position:relative;height:auto;padding:12px;border-right:0;border-bottom:1px solid var(--border)}
+  .brand{justify-content:space-between;gap:12px;margin-bottom:8px}
+  .brand__title{font-size:14px}
+  .menu-toggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;border:1px solid var(--border);background:transparent;color:inherit;cursor:pointer}
+
+  /* Hide nav by default on mobile; open as grid */
+  .nav{display:none;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:10px}
+  .sidebar.is-open .nav{display:grid}
+
+  /* Make items look like tappable tiles */
+  .nav a{justify-content:center;background:rgba(255,255,255,.03);border-color:var(--border)}
+}

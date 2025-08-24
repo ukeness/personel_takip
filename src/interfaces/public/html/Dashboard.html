@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Personel Takip Sistemi ile çalışanlarınızın giriş, çıkış, izin ve performans kayıtlarını kolayca takip edin." />
+  <meta name="keywords" content="personel takip, giriş çıkış, izin, rapor, dashboard, çalışan, şirket, takip sistemi" />
+  <meta name="author" content="Enes Kılcı" />
+  <title>Personel Takip — Anasayfa</title>
+  <link rel="canonical" href="/" />
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../css/_shared.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+  <link rel="stylesheet" href="../css/sidebar.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Yan Menü">
+      <div class="brand">
+        <div class="brand__logo" aria-label="Personel Takip Logo" title="Personel Takip">PT</div>
+        <span class="brand__title">Personel Takip</span>
+        <!-- Mobile toggle -->
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menüyü Aç/Kapat">☰</button>
+      </div>
+      <nav class="nav" id="main-nav" aria-label="Ana Menü">
+        <a href="#" class="is-active" aria-current="page">🏠 Anasayfa</a>
+        <a href="#">🗂 İzin Kayıtları</a>
+        <a href="#">📊 Raporlar</a>
+        <a href="#">⚙️ Ayarlar</a>
+      </nav>
+    </aside>
+
+    <div>
+      <!-- Header -->
+      <header class="header" role="banner">
+        <div class="company" aria-label="Firma">
+          <div class="company__logo" aria-hidden="true" title="Şirket"></div>
+          <span class="company__name">Ukeness A.Ş.</span>
+        </div>
+        <div class="profile" aria-label="Kullanıcı Profili">
+          <!-- Metni sola, avatarı sağa al -->
+          <div class="text">
+            <span class="name">Enes Kılcı</span>
+            <span class="role">Çalışan</span>
+          </div>
+          <div class="avatar" aria-hidden="true"></div>
+        </div>
+      </header>
+
+      <!-- Main -->
+      <main class="main" id="main-content">
+        <h1 style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Personel Takip Anasayfa</h1>
+        <!-- Actions -->
+        <section class="actions" aria-label="Hızlı İşlemler">
+          <button class="btn btn--in" type="button" aria-label="Giriş Saati Ekle"><i class="fa-solid fa-right-to-bracket fa-lg" style="color: #2e8d3f; margin-right: 0.5rem;"></i>  Giriş Saati Ekle</button>
+          <button class="btn btn--out" type="button" aria-label="Çıkış Saati Ekle"><i class="fa-solid fa-arrow-right-from-bracket fa-lg" style="color: #c70000; margin-right: 0.5rem;"></i> Çıkış Saati Ekle</button>
+          <button class="btn btn--leave" type="button" aria-label="İzin Talep Et"><i class="fa-regular fa-pen-to-square fa-lg" style="color: #1656c5; margin-right: 0.5rem;"></i> İzin Talep Et</button>
+        </section>
+        <!-- Top cards: Günlük Durum -->
+        <section class="cards" aria-label="Bugünkü Durum">
+          <article class="card">
+            <h2 class="card__label">Bugünkü Giriş</h2>
+            <div class="card__value">08:57</div>
+          </article>
+          <article class="card">
+            <h2 class="card__label">Bugünkü Çıkış</h2>
+            <div class="card__value">-</div>
+          </article>
+          <article class="card card--ok">
+            <h2 class="card__label">Toplam Çalışma (Bugün)</h2>
+            <div class="card__value">06:12</div>
+          </article>
+          <article class="card card--warn">
+            <h2 class="card__label">Molaya Kalan Süre</h2>
+            <div class="card__value">00:18</div>
+          </article>
+          <article class="card card--bad">
+            <h2 class="card__label">Çıkışa Kalan Süre</h2>
+            <div class="card__value">02:48</div>
+          </article>
+        </section>
+
+        <section class="content">
+          <!-- Recent 5 days table -->
+          <div class="panel" aria-label="Son 5 Günlük Kayıt">
+            <div class="panel__head">
+              <h2 class="panel__title">Son 5 Günlük Kayıt</h2>
+              <small style="color:var(--muted)">Detaylar için <a href="#" style="color:inherit;text-decoration:underline;">Raporlar &rsaquo;</a></small>
+            </div>
+            <div style="overflow:auto">
+              <table aria-label="Son 5 Günlük Kayıt Tablosu">
+                <thead>
+                  <tr>
+                    <th scope="col">Tarih</th>
+                    <th scope="col">Giriş</th>
+                    <th scope="col">Çıkış</th>
+                    <th scope="col">İzin Süresi</th>
+                    <th scope="col">Gecikme</th>
+                    <th scope="col">Gelmedi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-th="Tarih">2025-08-18</td>
+                    <td data-th="Giriş">09:04</td>
+                    <td data-th="Çıkış">18:01</td>
+                    <td data-th="İzin Süresi">-</td>
+                    <td data-th="Gecikme">00:04</td>
+                    <td data-th="Gelmedi"><span class="kpi-dot ok" title="Geldi" aria-label="Geldi"></span></td>
+                  </tr>
+                  <tr>
+                    <td data-th="Tarih">2025-08-19</td>
+                    <td data-th="Giriş">09:00</td>
+                    <td data-th="Çıkış">18:02</td>
+                    <td data-th="İzin Süresi">01:00</td>
+                    <td data-th="Gecikme">-</td>
+                    <td data-th="Gelmedi"><span class="kpi-dot ok" title="Geldi" aria-label="Geldi"></span></td>
+                  </tr>
+                  <tr>
+                    <td data-th="Tarih">2025-08-20</td>
+                    <td data-th="Giriş">08:58</td>
+                    <td data-th="Çıkış">17:59</td>
+                    <td data-th="İzin Süresi">-</td>
+                    <td data-th="Gecikme">-</td>
+                    <td data-th="Gelmedi"><span class="kpi-dot ok" title="Geldi" aria-label="Geldi"></span></td>
+                  </tr>
+                  <tr>
+                    <td data-th="Tarih">2025-08-21</td>
+                    <td data-th="Giriş">-</td>
+                    <td data-th="Çıkış">-</td>
+                    <td data-th="İzin Süresi">-</td>
+                    <td data-th="Gecikme">-</td>
+                    <td data-th="Gelmedi"><span class="kpi-dot bad" title="Gelmedi" aria-label="Gelmedi"></span></td>
+                  </tr>
+                  <tr>
+                    <td data-th="Tarih">2025-08-22</td>
+                    <td data-th="Giriş">09:03</td>
+                    <td data-th="Çıkış">18:10</td>
+                    <td data-th="İzin Süresi">-</td>
+                    <td data-th="Gecikme">00:03</td>
+                    <td data-th="Gelmedi"><span class="kpi-dot ok" title="Geldi" aria-label="Geldi"></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Monthly summary -->
+          <aside class="panel" aria-label="Aylık Özet">
+            <div class="panel__head">
+              <h2 class="panel__title">Aylık Özet</h2>
+            </div>
+            <div class="summary">
+              <div class="summary__item">
+                <span class="label">Aylık Çalışma</span>
+                <span class="value">152:35</span>
+              </div>
+              <div class="summary__item">
+                <span class="label">Toplam İzin</span>
+                <span class="value">2 gün</span>
+              </div>
+              <div class="summary__item">
+                <span class="label">Toplam Geç Kalma</span>
+                <span class="value">00:27</span>
+              </div>
+              <div class="summary__item">
+                <span class="label">Toplam Gelmediği Gün</span>
+                <span class="value">1</span>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- Hatırlatmalar, Duyurular ve Notlar Bölümü Başlangıcı -->
+        <section class="content percent-50">
+          <!-- Duyurular -->
+          <div class="panel" aria-label="Duyurular">
+              <div class="panel__head">
+                <h2 class="panel__title">Duyurular</h2>
+              </div>
+              <ul class="announcements beautiful-announcements">
+                <li class="announcement-wrapper">
+                  <div class="announcement-item-header">
+                    <div class="avatar-sm" aria-hidden="true"></div>
+                    <div class="announcement-item-header-content">
+                      <span class="announcement-author">Ayşe Yılmaz</span>
+                      <span class="announcement-date">25-08-2025</span>
+                    </div>
+                  </div>
+                  <div class="announcement-item">
+                    <span class="announcement-text">Yarın saat 10:00'da toplantı yapılacaktır.</span>
+                  </div>
+                </li>
+
+                <li class="announcement-wrapper">
+                  <div class="announcement-item-header">
+                    <div class="avatar-sm" aria-hidden="true"></div>
+                    <div class="announcement-item-header-content">
+                      <span class="announcement-author">Mehmet Demir</span>
+                      <span class="announcement-date">24-08-2025</span>
+                    </div>
+                  </div>
+                  <div class="announcement-item">
+                    <span class="announcement-text">Cuma günü fazla mesai uygulanacaktır.</span>
+                  </div>
+                </li>
+
+                <li class="announcement-wrapper">
+                  <div class="announcement-item-header">
+                    <div class="avatar-sm" aria-hidden="true"></div>
+                    <div class="announcement-item-header-content">
+                      <span class="announcement-author">Zeynep Kaya</span>
+                      <span class="announcement-date">22-08-2025</span>
+                    </div>
+                  </div>
+                  <div class="announcement-item">
+                    <span class="announcement-text">İzin talepleri için yeni form kullanılacaktır.</span>
+                  </div>
+                </li>
+
+                <li class="announcement-wrapper">
+                  <div class="announcement-item-header">
+                    <div class="avatar-sm" aria-hidden="true"></div>
+                    <div class="announcement-item-header-content">
+                      <span class="announcement-author">Ahmet Yıldız</span>
+                      <span class="announcement-date">20-08-2025</span>
+                    </div>
+                  </div>
+                  <div class="announcement-item">
+                    <span class="announcement-text">Ofis giriş çıkış saatlerine dikkat ediniz.</span>
+                  </div>
+                </li>
+
+                <li class="announcement-wrapper">
+                  <div class="announcement-item-header">
+                    <div class="avatar-sm" aria-hidden="true"></div>
+                    <div class="announcement-item-header-content">
+                      <span class="announcement-author">Elif Çetin</span>
+                      <span class="announcement-date">18-08-2025</span>
+                    </div>
+                  </div>
+                  <div class="announcement-item">
+                    <span class="announcement-text">Yeni personel oryantasyonu başladı.</span>
+                  </div>
+                </li>
+
+                <li class="announcement-wrapper">
+                  <div class="announcement-item-header">
+                    <div class="avatar-sm" aria-hidden="true"></div>
+                    <div class="announcement-item-header-content">
+                      <span class="announcement-author">Murat Öz</span>
+                      <span class="announcement-date">15-08-2025</span>
+                    </div>
+                  </div>
+                  <div class="announcement-item">
+                    <span class="announcement-text">Doğum günü kutlaması yapılacaktır.</span>
+                  </div>
+                </li>
+
+                <li class="announcement-wrapper">
+                  <div class="announcement-item-header">
+                    <div class="avatar-sm" aria-hidden="true"></div>
+                    <div class="announcement-item-header-content">
+                      <span class="announcement-author">Selin Arslan</span>
+                      <span class="announcement-date">10-08-2025</span>
+                    </div>
+                  </div>
+                  <div class="announcement-item">
+                    <span class="announcement-text">Yeni projeler için fikirlerinizi paylaşın.</span>
+                  </div>
+                </li>
+
+                <li class="announcement-wrapper">
+                  <div class="announcement-item-header">
+                    <div class="avatar-sm" aria-hidden="true"></div>
+                    <div class="announcement-item-header-content">
+                      <span class="announcement-author">Can Yücel</span>
+                      <span class="announcement-date">05-08-2025</span>
+                    </div>
+                  </div>
+                  <div class="announcement-item">
+                    <span class="announcement-text">Güvenlik eğitimine katılmayı unutmayın.</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          
+          <!-- Notlar (Aylık Özet Panelinde) -->
+          <aside class="panel" aria-label="Notlar">
+            <div class="panel__head">
+              <h2 class="panel__title">Notlarım</h2>
+              <button class="btn btn--add-note" type="button" aria-label="Not Ekle" onclick="addNote()"><i class="fa-regular fa-pen-to-square fa-lg" style="color: #1656c5;"></i></button>
+            </div>
+            <div class="notes" id="notes-list">
+              <div class="note-item"><span>Bugün saat 15:00'te arama yapılacak.</span></div>
+              <div class="note-item"><span>Haftalık rapor teslim tarihi: 26 Ağustos.</span></div>
+              <div class="note-item"><span>İzin formunu güncelle.</span></div>
+              <div class="note-item"><span>Proje toplantısı notları: Müşteri geri bildirimleri olumlu.</span></div>
+              <div class="note-item"><span>Yeni ekip üyesinin oryantasyonu: 27 Ağustos.</span></div>
+              <div class="note-item"><span>Yazılım güncelleme tarihi: 30 Ağustos.</span></div>
+              <div class="note-item"><span>Ofis malzeme siparişleri verildi.</span></div>
+            </div>
+            <script>
+              function addNote() {
+                const note = prompt('Yeni notunuzu girin:');
+                if (note && note.trim()) {
+                  const notesList = document.getElementById('notes-list');
+                  const div = document.createElement('div');
+                  div.className = 'note-item';
+                  div.innerHTML = `<span>${note}</span>`;
+                  notesList.appendChild(div);
+                  notesList.scrollTop = notesList.scrollHeight;
+                }
+              }
+              // Sidebar mobile toggle
+              (function(){
+                const sidebar = document.querySelector('.sidebar');
+                const toggle = document.querySelector('.menu-toggle');
+                if(toggle){
+                  toggle.addEventListener('click', function(){
+                    const isOpen = sidebar.classList.toggle('is-open');
+                    this.setAttribute('aria-expanded', String(isOpen));
+                  });
+                }
+              })();
+            </script>
+          </aside>
+        </section>
+        <!-- Hatırlatmalar, Duyurular ve Notlar Bölümü Sonu -->
+      </main>
+    </div>
+  </div>
+</body>
+</html>
